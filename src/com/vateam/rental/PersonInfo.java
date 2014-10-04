@@ -5,9 +5,35 @@ public class PersonInfo {
 	private Location location;
 	private String firstName;
 	private String secondName;
-	private String phoneNumber;
+	private String phoneNumber1;
+	private String phoneNumber2;
 	private String emailAddress;
+	private String idNumber;
 	
+	public String getPhoneNumber1() {
+		return phoneNumber1;
+	}
+
+	public void setPhoneNumber1(String phoneNumber1) {
+		this.phoneNumber1 = phoneNumber1;
+	}
+
+	public String getPhoneNumber2() {
+		return phoneNumber2;
+	}
+
+	public void setPhoneNumber2(String phoneNumber2) {
+		this.phoneNumber2 = phoneNumber2;
+	}
+
+	public String getIdNumber() {
+		return idNumber;
+	}
+
+	public void setPassportNumber(String passportNumber) {
+		this.passportNumber = passportNumber;
+	}
+
 	public Location getLocation() {
 		return location;
 	}
@@ -19,24 +45,23 @@ public class PersonInfo {
 	public String getFirstName() {
 		return firstName;
 	}
+	
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+	
 	public String getSecondName() {
 		return secondName;
 	}
+	
 	public void setSecondName(String secondName) {
 		this.secondName = secondName;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+
 	public String getEmailAddress() {
 		return emailAddress;
 	}
+	
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
