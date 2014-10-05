@@ -8,6 +8,9 @@ public class Booking {
 	private Date regDate;
 	private Manager bookingManager;
 	private DateRange bookingRange;
+	private Vehicle bookedVehicle;
+	private Customer bookingCustomer;
+	
 	
 	public Integer getId() {
 		return id;
@@ -39,6 +42,22 @@ public class Booking {
 
 	public void setBookingRange(DateRange bookingRange) {
 		this.bookingRange = bookingRange;
+	}
+
+	public Vehicle getBookedVehicle() {
+		return bookedVehicle;
+	}
+
+	public void setBookedVehicle(Vehicle bookedVehicle) {
+		this.bookedVehicle = bookedVehicle;
+	}
+
+	public Customer getBookingCustomer() {
+		return bookingCustomer;
+	}
+
+	public void setBookingCustomer(Customer bookingCustomer) {
+		this.bookingCustomer = bookingCustomer;
 	}
 
 }

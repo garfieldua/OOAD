@@ -1,14 +1,17 @@
 package com.vateam.rental;
 
+import java.util.Date;
+
 public class PersonInfo {
 
-	private Location location;
+	//private Location location;
 	private String firstName;
 	private String secondName;
 	private String phoneNumber1;
 	private String phoneNumber2;
 	private String emailAddress;
 	private String idNumber;
+	private Date birthDate;
 	
 	public String getPhoneNumber1() {
 		return phoneNumber1;
@@ -30,18 +33,18 @@ public class PersonInfo {
 		return idNumber;
 	}
 
-	public void setPassportNumber(String passportNumber) {
-		this.passportNumber = passportNumber;
+	public void setPassportNumber(String idNumber) {
+		this.idNumber = idNumber;
 	}
 
-	public Location getLocation() {
-		return location;
-	}
-	
-	public void setLocation(Location location) {
-		this.location = location;
-	}
-	
+//	public Location getLocation() {
+//		return location;
+//	}
+//	
+//	public void setLocation(Location location) {
+//		this.location = location;
+//	}
+//	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -64,6 +67,14 @@ public class PersonInfo {
 	
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 	
 }
