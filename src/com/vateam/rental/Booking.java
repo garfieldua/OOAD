@@ -5,6 +5,7 @@ import java.util.Date;
 public class Booking {
 
 	private Integer id;
+	private String status;
 	private Date regDate;
 	private Manager bookingManager;
 	private DateRange bookingRange;
