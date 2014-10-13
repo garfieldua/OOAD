@@ -8,7 +8,7 @@ abstract public class Vehicle {
 	private Integer odometer;
 	private String manufacturer;
 	private String model;
-	private Integer fuelConsumption;
+	private Double fuelConsumption;
 	private Integer engineVolume;
 	private Integer yearOfManufacture;
 	// change to some enum?
@@ -56,10 +56,10 @@ abstract public class Vehicle {
 	public void setYearOfManufacture(Integer yearOfManufacture) {
 		this.yearOfManufacture = yearOfManufacture;
 	}
-	public Integer getFuelConsumption() {
+	public Double getFuelConsumption() {
 		return fuelConsumption;
 	}
-	public void setFuelConsumption(Integer fuelConsumption) {
+	public void setFuelConsumption(Double fuelConsumption) {
 		this.fuelConsumption = fuelConsumption;
 	}
 	public Integer getEngineVolume() {

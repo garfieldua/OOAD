@@ -23,7 +23,7 @@ public class RentalService {
 		car.setModel("Soul");
 		car.setColor("Grey");
 		car.setEngineVolume(1600);
-		car.setFuelConsumption(8);
+		car.setFuelConsumption(8.0);
 		car.setOdometer(12500);
 		car.setPricePerDay(30);
 		car.setGearBoxType("Automatic");
