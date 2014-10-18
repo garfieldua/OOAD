@@ -2,6 +2,8 @@ package com.vateam.rental;
 
 import java.util.Date;
 
+import com.vateam.rental.Preferences.Preference;
+
 public class RentalService {
 
 	//TODO:
@@ -14,9 +16,32 @@ public class RentalService {
 	// Extras (gas, extra insurance)
 	// Currency?
 	
+	
+	// if we go to moscow from kiev, then, when we arrive, the car MUST be available 
+	// at moscow's department. 
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Preferences pref = new Preferences();
+		pref.addPreference(Preference.AIR_CONDITIONER, true);
+		pref.addPreference(Preference.GEAR_TYPE, "automatic");
+		pref.addPreference(Preference.SEAT_NUMBER, 4);
 		
+		Location pickLocation = new Location();
+		pickLocation.setCountryName("Ukraine");
+		pickLocation.setCountryCode("UA");
+		pickLocation.setCityName("Kiev");
+		
+		Department depart = new Department();
+		depart.setId(15);
+		
+		BookingResponder br = new BookingResponder();
+		boolean b = br.isVehicleAvailable(depart, pref);
+		
+		System.out.println(b);
+		
+		//System.out.println(pref);
+		
+		/*
 		// Creating car
 		Vehicle car = new Car();
 		car.setManufacturer("KIA Motors");
@@ -69,6 +94,7 @@ public class RentalService {
 		booking.setRegDate(new Date());
 		
 		System.out.println("Super mega rental service");
+		*/
 	}
 
 }

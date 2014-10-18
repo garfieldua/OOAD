@@ -12,6 +12,8 @@ public class Booking {
 	private Vehicle bookedVehicle;
 	private Customer bookingCustomer;
 	
+	// department -> where we get vehicle
+	// department -> where get return vehicle
 	
 	public Integer getId() {
 		return id;

@@ -2,6 +2,7 @@ package com.vateam.rental;
 
 abstract public class Vehicle {
 	
+	private String vehicleClass;
 	private Integer pricePerDay;
 	private String color;
 	private Integer seatNumber;
@@ -11,6 +12,10 @@ abstract public class Vehicle {
 	private Double fuelConsumption;
 	private Integer engineVolume;
 	private Integer yearOfManufacture;
+	private boolean hasAirConditioner;
+	private Department curDepartament;
+	private Boolean isAvailable;
+	
 	// change to some enum?
 	private String gearBoxType;
 	
@@ -74,6 +79,33 @@ abstract public class Vehicle {
 	public void setGearBoxType(String gearBoxType) {
 		this.gearBoxType = gearBoxType;
 	}
+	public String getVehicleClass() {
+		return vehicleClass;
+	}
+	public void setVehicleClass(String vehicleClass) {
+		this.vehicleClass = vehicleClass;
+	}
 	
+	public boolean isHasAirConditioner() {
+		return hasAirConditioner;
+	}
 
+	public void setHasAirConditioner(boolean hasAirConditioner) {
+		this.hasAirConditioner = hasAirConditioner;
+	}
+	public Department getCurDepartament() {
+		return curDepartament;
+	}
+	public void setCurDepartament(Department curDepartament) {
+		this.curDepartament = curDepartament;
+	}
+	public Boolean isAvailable() {
+		return isAvailable;
+	}
+	public void setAvailable(Boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
+	
+	// gear type + seat numbers + vehicle class
+	// customer may prefer car or car and motorcycle at the same time
 }

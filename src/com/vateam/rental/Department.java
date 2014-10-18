@@ -1,14 +1,10 @@
 package com.vateam.rental;
 
-import java.util.ArrayList;
-
 public class Department {
-	
 	private Location departmentLocation;
 	private String phoneNumber;
 	private String emailAddress;
-	ArrayList<Vehicle> vehicleList = new ArrayList<Vehicle>();
-	ArrayList<Manager> managerList = new ArrayList<Manager>();
+	private int id;
 	
 	public Location getDepartmentLocation() {
 		return departmentLocation;
@@ -28,17 +24,34 @@ public class Department {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
-	public ArrayList<Vehicle> getVehicleList() {
-		return vehicleList;
+	public int getId() {
+		return id;
 	}
-	public void setVehicleList(ArrayList<Vehicle> vehicleList) {
-		this.vehicleList = vehicleList;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public ArrayList<Manager> getManagerList() {
-		return managerList;
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
 	}
-	public void setManagerList(ArrayList<Manager> managerList) {
-		this.managerList = managerList;
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Department other = (Department) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
+	
 	
 }

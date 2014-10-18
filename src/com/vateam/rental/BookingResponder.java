@@ -2,6 +2,9 @@ package com.vateam.rental;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+
+import com.vateam.rental.Preferences.Preference;
 
 // at first, the person is GUEST
 // we have no info about him or her
@@ -17,6 +20,90 @@ import java.util.Date;
 
 
 public class BookingResponder {
+	
+	
+	// check if there's a vehicle for given location and preferences
+	public Boolean isVehicleAvailable(Department d, Preferences pref) {
+		HashMap<Preferences.Preference,Object> map_prefs = pref.getPreferences();
+		
+		// here we need to get all vehicle :)
+		ArrayList<Vehicle> v_all = GlobalManager.getInstance().getAllVehicles();
+		
+		// filter by given department
+		ArrayList<Vehicle> v_filtered_department = new ArrayList<Vehicle>();
+		
+		for (Vehicle v : v_all) {
+			if (v.getCurDepartament().equals(d) ) {
+				v_filtered_department.add(v);
+			}
+		}
+		
+		// filter by availablity
+		ArrayList<Vehicle> v_filtered_availability = new ArrayList<Vehicle>();
+		
+		for (Vehicle v : v_filtered_department) {
+			if (v.isAvailable()) {
+				v_filtered_availability.add(v);
+			}
+		}
+		
+		// filter by preferences
+		ArrayList<Vehicle> v_filtered_prefs = new ArrayList<Vehicle>();
+		
+		for (Vehicle v : v_filtered_availability) {
+			boolean flag = true;
+			for (Preference key : map_prefs.keySet()) {
+				switch(key) {
+				case GEAR_TYPE:
+					String gear_type = (String) map_prefs.get(key);
+					
+					if (!gear_type.equals(v.getGearBoxType())) {
+						flag = false;
+					}
+					
+					break;
+					
+				case SEAT_NUMBER:
+					Integer seat_number = (Integer) map_prefs.get(key);
+					
+					if (!seat_number.equals(v.getSeatNumber())) {
+						flag = false;
+					}
+					
+					break;
+					
+				case VEHICLE_TYPE:
+					// not implemented yet
+					
+					break;
+					
+				case VEHICLE_CLASS:
+					// not implemented yet
+					
+					break;
+					
+				case AIR_CONDITIONER:
+					Boolean has_conditioner = (Boolean) map_prefs.get(key);
+					
+					if (!has_conditioner.equals(v.isHasAirConditioner())) {
+						flag = false;
+					}
+					
+					break;
+				}
+			}
+			
+			
+			//add if all prefs are ok
+			if (flag) {
+				v_filtered_prefs.add(v);
+			}
+		}
+		
+		// if result is empty -> bye bye, no vehicle :)
+		boolean b = (v_filtered_prefs.size() != 0);
+		return b;
+	}
 	
 	//return all cars of the firm
 	public ArrayList<Vehicle> getAllVehicles() {
