@@ -23,7 +23,8 @@ public class BookingResponder {
 	
 	
 	// check if there's a vehicle for given location and preferences
-	public Boolean isVehicleAvailable(Department d, Preferences pref) {
+	public Vehicle getAvailableVehicle(Booking booking) {
+		Preferences pref = booking.getPrefs();
 		HashMap<Preferences.Preference,Object> map_prefs = pref.getPreferences();
 		
 		// here we need to get all vehicle :)
@@ -33,7 +34,7 @@ public class BookingResponder {
 		ArrayList<Vehicle> v_filtered_department = new ArrayList<Vehicle>();
 		
 		for (Vehicle v : v_all) {
-			if (v.getCurDepartament().equals(d) ) {
+			if (v.getCurDepartament().equals(booking.getPickUpLocation()) ) {
 				v_filtered_department.add(v);
 			}
 		}
@@ -101,8 +102,9 @@ public class BookingResponder {
 		}
 		
 		// if result is empty -> bye bye, no vehicle :)
-		boolean b = (v_filtered_prefs.size() != 0);
-		return b;
+		//boolean b = (v_filtered_prefs.size() != 0);
+		//return b;
+		return v_filtered_prefs.get(0);
 	}
 	
 	//return all cars of the firm
@@ -138,7 +140,6 @@ public class BookingResponder {
 			Booking booking = new Booking();
 			booking.setBookedVehicle(v);
 			booking.setBookingCustomer(customer);
-			booking.setBookingManager(m);
 			booking.setBookingRange(r);
 			booking.setId(id);
 			booking.setRegDate(new Date());

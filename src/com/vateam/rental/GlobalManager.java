@@ -32,8 +32,8 @@ public class GlobalManager {
 		car.setCurDepartament(d);
 		
 		Vehicle car2 = new Car();
-		car2.setManufacturer("Something");
-		car2.setModel("Model");
+		car2.setManufacturer("Nissan Motors");
+		car2.setModel("Juke");
 		car2.setColor("Color");
 		car2.setEngineVolume(1300);
 		car2.setFuelConsumption(9.5);

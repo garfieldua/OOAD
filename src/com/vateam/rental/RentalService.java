@@ -21,23 +21,50 @@ public class RentalService {
 	// at moscow's department. 
 	
 	public static void main(String[] args) {
-		Preferences pref = new Preferences();
-		pref.addPreference(Preference.AIR_CONDITIONER, true);
-		pref.addPreference(Preference.GEAR_TYPE, "automatic");
-		pref.addPreference(Preference.SEAT_NUMBER, 4);
+		// used to communicate
+		BookingResponder br = new BookingResponder();
 		
-		Location pickLocation = new Location();
-		pickLocation.setCountryName("Ukraine");
-		pickLocation.setCountryCode("UA");
-		pickLocation.setCityName("Kiev");
+		Preferences prefs = new Preferences();
+		prefs.addPreference(Preference.AIR_CONDITIONER, true);
+		prefs.addPreference(Preference.GEAR_TYPE, "automatic");
+		prefs.addPreference(Preference.SEAT_NUMBER, 4);
 		
 		Department depart = new Department();
 		depart.setId(15);
 		
-		BookingResponder br = new BookingResponder();
-		boolean b = br.isVehicleAvailable(depart, pref);
+		//check the info?
 		
-		System.out.println(b);
+		//create booking
+		
+		DateRange dateRange = new DateRange();
+		dateRange.setStarts(new Date(2014,11,06));
+		dateRange.setEnds(new Date(2014,11,11));
+		
+		Booking booking = new Booking();
+		booking.setId(1);
+		booking.setRegDate(new Date());
+		booking.setBookingRange(dateRange);
+		booking.setPrefs(prefs);
+		booking.setPickUpLocation(depart);
+		
+		//ok...
+		// after some time (depends on wanted vehicle type) 
+		//server side:
+		
+		Vehicle v = br.getAvailableVehicle(booking);
+		if (v != null) {
+			System.out.println("Vehicle is available");
+			System.out.println(v.getModel());
+			
+			booking.setBookedVehicle(v);
+		} 
+		else {
+			System.out.println("Vehicle is not available");
+			
+			//TODO: book another car
+			// person can get refund
+		}
+		
 		
 		//System.out.println(pref);
 		

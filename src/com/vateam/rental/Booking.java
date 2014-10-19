@@ -7,10 +7,14 @@ public class Booking {
 	private Integer id;
 	private String status;
 	private Date regDate;
-	private Manager bookingManager;
 	private DateRange bookingRange;
 	private Vehicle bookedVehicle;
 	private Customer bookingCustomer;
+	private Department pickUpLocation;
+	private Preferences prefs;
+	
+	//agregation
+	private Driver driver = null;
 	
 	// department -> where we get vehicle
 	// department -> where get return vehicle
@@ -29,14 +33,6 @@ public class Booking {
 
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
-	}
-
-	public Manager getBookingManager() {
-		return bookingManager;
-	}
-
-	public void setBookingManager(Manager bookingManager) {
-		this.bookingManager = bookingManager;
 	}
 
 	public DateRange getBookingRange() {
@@ -61,6 +57,38 @@ public class Booking {
 
 	public void setBookingCustomer(Customer bookingCustomer) {
 		this.bookingCustomer = bookingCustomer;
+	}
+
+	public Driver getDriver() {
+		return driver;
+	}
+
+	public void setDriver(Driver driver) {
+		this.driver = driver;
+	}
+
+	public Department getPickUpLocation() {
+		return pickUpLocation;
+	}
+
+	public void setPickUpLocation(Department pickUpLocation) {
+		this.pickUpLocation = pickUpLocation;
+	}
+
+	public Preferences getPrefs() {
+		return prefs;
+	}
+
+	public void setPrefs(Preferences prefs) {
+		this.prefs = prefs;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }
