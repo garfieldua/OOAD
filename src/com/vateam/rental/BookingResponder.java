@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import com.vateam.rental.Preferences.Preference;
 
 // at first, the person is GUEST
 // we have no info about him or her
@@ -23,10 +22,7 @@ public class BookingResponder {
 	
 	
 	// check if there's a vehicle for given location and preferences
-	public Vehicle getAvailableVehicle(Booking booking) {
-		Preferences pref = booking.getPrefs();
-		HashMap<Preferences.Preference,Object> map_prefs = pref.getPreferences();
-		
+	public Vehicle getAvailableVehicle(ArrayList<Preference> prefs, Department pickUpLocation, boolean isWeakCheck ) {
 		// here we need to get all vehicle :)
 		ArrayList<Vehicle> v_all = GlobalManager.getInstance().getAllVehicles();
 		
@@ -34,7 +30,7 @@ public class BookingResponder {
 		ArrayList<Vehicle> v_filtered_department = new ArrayList<Vehicle>();
 		
 		for (Vehicle v : v_all) {
-			if (v.getCurDepartament().equals(booking.getPickUpLocation()) ) {
+			if (v.getCurDepartament().equals(pickUpLocation) ) {
 				v_filtered_department.add(v);
 			}
 		}
@@ -51,50 +47,24 @@ public class BookingResponder {
 		// filter by preferences
 		ArrayList<Vehicle> v_filtered_prefs = new ArrayList<Vehicle>();
 		
+		// get wanted preferences
+		//ArrayList<Preference> prefs = booking.getPreferences();
+		
 		for (Vehicle v : v_filtered_availability) {
 			boolean flag = true;
-			for (Preference key : map_prefs.keySet()) {
-				switch(key) {
-				case GEAR_TYPE:
-					String gear_type = (String) map_prefs.get(key);
-					
-					if (!gear_type.equals(v.getGearBoxType())) {
+			for (Preference pref : prefs) {
+				if (isWeakCheck && (pref instanceof WeakPreference)) {
+					WeakPreference weakpref = (WeakPreference) pref;
+					if (!weakpref.checkVehicleByWeakPref(v)) {
 						flag = false;
 					}
-					
-					break;
-					
-				case SEAT_NUMBER:
-					Integer seat_number = (Integer) map_prefs.get(key);
-					
-					if (!seat_number.equals(v.getSeatNumber())) {
+				} else {
+					if (!pref.checkVehicleByPref(v)) {
 						flag = false;
 					}
-					
-					break;
-					
-				case VEHICLE_TYPE:
-					// not implemented yet
-					
-					break;
-					
-				case VEHICLE_CLASS:
-					// not implemented yet
-					
-					break;
-					
-				case AIR_CONDITIONER:
-					Boolean has_conditioner = (Boolean) map_prefs.get(key);
-					
-					if (!has_conditioner.equals(v.isHasAirConditioner())) {
-						flag = false;
-					}
-					
-					break;
 				}
 			}
-			
-			
+					
 			//add if all prefs are ok
 			if (flag) {
 				v_filtered_prefs.add(v);
@@ -104,7 +74,14 @@ public class BookingResponder {
 		// if result is empty -> bye bye, no vehicle :)
 		//boolean b = (v_filtered_prefs.size() != 0);
 		//return b;
-		return v_filtered_prefs.get(0);
+		if (v_filtered_prefs.size() != 0)
+		{
+			return v_filtered_prefs.get(0);
+		}
+		else
+		{
+			return null;
+		}
 	}
 	
 	//return all cars of the firm
@@ -138,7 +115,6 @@ public class BookingResponder {
 			
 			// create booking
 			Booking booking = new Booking();
-			booking.setBookedVehicle(v);
 			booking.setBookingCustomer(customer);
 			booking.setBookingRange(r);
 			booking.setId(id);

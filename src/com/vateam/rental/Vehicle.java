@@ -12,7 +12,6 @@ abstract public class Vehicle {
 	private Double fuelConsumption;
 	private Integer engineVolume;
 	private Integer yearOfManufacture;
-	private boolean hasAirConditioner;
 	private Department curDepartament;
 	private Boolean isAvailable;
 	
@@ -86,13 +85,6 @@ abstract public class Vehicle {
 		this.vehicleClass = vehicleClass;
 	}
 	
-	public boolean isHasAirConditioner() {
-		return hasAirConditioner;
-	}
-
-	public void setHasAirConditioner(boolean hasAirConditioner) {
-		this.hasAirConditioner = hasAirConditioner;
-	}
 	public Department getCurDepartament() {
 		return curDepartament;
 	}

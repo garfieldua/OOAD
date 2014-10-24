@@ -1,8 +1,7 @@
 package com.vateam.rental;
 
+import java.util.ArrayList;
 import java.util.Date;
-
-import com.vateam.rental.Preferences.Preference;
 
 public class RentalService {
 
@@ -20,14 +19,20 @@ public class RentalService {
 	// if we go to moscow from kiev, then, when we arrive, the car MUST be available 
 	// at moscow's department. 
 	
+	// 1. Уподобання змінні з часом
+	// 2. Послаблювачі уподобань
+	// 3. Поняття оренди (для авто та мото поки що однаково)
+	// 4. Операції клієнта протягом оренди (страховий випадок, поліморфність)
+	// 5. Повернення транспортного засобу
+	
 	public static void main(String[] args) {
 		// used to communicate
 		BookingResponder br = new BookingResponder();
 		
-		Preferences prefs = new Preferences();
-		prefs.addPreference(Preference.AIR_CONDITIONER, true);
-		prefs.addPreference(Preference.GEAR_TYPE, "automatic");
-		prefs.addPreference(Preference.SEAT_NUMBER, 4);
+		//Preferences prefs = new Preferences();
+		//prefs.addPreference(Preference.AIR_CONDITIONER, true);
+		//prefs.addPreference(Preference.GEAR_TYPE, "automatic");
+		//prefs.addPreference(Preference.SEAT_NUMBER, 4);
 		
 		Department depart = new Department();
 		depart.setId(15);
@@ -44,14 +49,17 @@ public class RentalService {
 		booking.setId(1);
 		booking.setRegDate(new Date());
 		booking.setBookingRange(dateRange);
-		booking.setPrefs(prefs);
 		booking.setPickUpLocation(depart);
+		booking.setDropOffLocation(depart);
+		
+		booking.addPreference(new PreferenceSeatNumber(5));
+		booking.addPreference(new PreferenceAirConditioner());
 		
 		//ok...
 		// after some time (depends on wanted vehicle type) 
 		//server side:
 		
-		Vehicle v = br.getAvailableVehicle(booking);
+		Vehicle v = br.getAvailableVehicle(booking.getPreferences(), depart, false);
 		if (v != null) {
 			System.out.println("Vehicle is available");
 			System.out.println(v.getModel());
@@ -59,11 +67,33 @@ public class RentalService {
 			booking.setBookedVehicle(v);
 		} 
 		else {
-			System.out.println("Vehicle is not available");
+			System.out.println("Getting car by weak preferences");
 			
-			//TODO: book another car
-			// person can get refund
+			Vehicle v2 = br.getAvailableVehicle(booking.getPreferences(), depart, true);
+			if (v2 != null) {
+				System.out.println("Vehicle is avialable");
+				System.out.println(v2.getModel());
+			}
+			else {
+				System.out.println("Vehicle is not available");
+			}
+			
 		}
+		
+		// after some time..
+		RentalByBooking rent1 = new RentalByBooking(booking);
+		
+		
+		// another use-case branch
+		Customer c = new Customer();
+		
+		ArrayList<Preference> buyitnow_prefs = new ArrayList<Preference>();
+		buyitnow_prefs.add(new PreferenceSeatNumber(5));
+		
+		Vehicle v3 = br.getAvailableVehicle(buyitnow_prefs, depart, true);
+		// if there's no v3, use weak preferences.. etc
+		RentalBuyItNow rent2 = new RentalBuyItNow(c,v3,new Date(2014,11,06));
+		
 		
 		
 		//System.out.println(pref);

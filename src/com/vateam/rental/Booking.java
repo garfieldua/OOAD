@@ -1,5 +1,6 @@
 package com.vateam.rental;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Booking {
@@ -8,10 +9,21 @@ public class Booking {
 	private String status;
 	private Date regDate;
 	private DateRange bookingRange;
-	private Vehicle bookedVehicle;
 	private Customer bookingCustomer;
 	private Department pickUpLocation;
-	private Preferences prefs;
+	private Department dropOffLocation;
+	private ArrayList<Preference> prefs = new ArrayList<Preference>();
+	private Vehicle bookedVehicle;
+	
+	
+	public void addPreference(Preference pref) {
+		prefs.add(pref);
+	}
+	
+	public ArrayList<Preference> getPreferences() {
+		return new ArrayList<Preference>(prefs);
+	}
+	
 	
 	//agregation
 	private Driver driver = null;
@@ -75,20 +87,20 @@ public class Booking {
 		this.pickUpLocation = pickUpLocation;
 	}
 
-	public Preferences getPrefs() {
-		return prefs;
-	}
-
-	public void setPrefs(Preferences prefs) {
-		this.prefs = prefs;
-	}
-
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Department getDropOffLocation() {
+		return dropOffLocation;
+	}
+
+	public void setDropOffLocation(Department dropOffLocation) {
+		this.dropOffLocation = dropOffLocation;
 	}
 
 }

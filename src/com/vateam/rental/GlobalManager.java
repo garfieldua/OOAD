@@ -16,7 +16,7 @@ public class GlobalManager {
 		Department d = new Department();
 		d.setId(15);
 		
-		Vehicle car = new Car();
+		Car car = new Car();
 		car.setManufacturer("KIA Motors");
 		car.setModel("Soul");
 		car.setColor("Grey");
@@ -31,7 +31,7 @@ public class GlobalManager {
 		car.setAvailable(true);
 		car.setCurDepartament(d);
 		
-		Vehicle car2 = new Car();
+		Car car2 = new Car();
 		car2.setManufacturer("Nissan Motors");
 		car2.setModel("Juke");
 		car2.setColor("Color");
@@ -46,8 +46,15 @@ public class GlobalManager {
 		car2.setAvailable(true);
 		car2.setCurDepartament(d);
 		
+		Motorbike moto = new Motorbike();
+		moto.setModel("lolka");
+		moto.setCurDepartament(d);
+		moto.setAvailable(true);
+		moto.setSeatNumber(4);
+		
 		vehicles.add(car);
 		vehicles.add(car2);
+		vehicles.add(moto);
     }
 	 
     public static GlobalManager getInstance() {

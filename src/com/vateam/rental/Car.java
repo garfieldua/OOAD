@@ -3,6 +3,7 @@ package com.vateam.rental;
 public class Car extends Vehicle {
 	// that is concrete car!
 	private String licensePlate;
+	private boolean hasAirConditioner;
 	
 
 	public String getLicensePlate() {
@@ -11,5 +12,13 @@ public class Car extends Vehicle {
 
 	public void setLicensePlate(String licensePlate) {
 		this.licensePlate = licensePlate;
+	}
+
+	public boolean hasAirConditioner() {
+		return hasAirConditioner;
+	}
+
+	public void setHasAirConditioner(boolean hasAirConditioner) {
+		this.hasAirConditioner = hasAirConditioner;
 	}
 }
