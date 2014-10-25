@@ -1,5 +1,7 @@
 package com.vateam.rental;
 
+import java.util.ArrayList;
+
 public abstract class Rental {
 	private Integer id;
 	private String status;
@@ -7,6 +9,18 @@ public abstract class Rental {
 	private Customer customer;
 	private Department pickUpLocation;
 	private Vehicle rentedVehicle;
+	private Manager manager;
+	
+	// terms of vehicle return
+	private ArrayList<ConditionChecker> returnTerms = new ArrayList<ConditionChecker>();
+	
+	public void addReturnTerm(ConditionChecker pref) {
+		returnTerms.add(pref);
+	}
+	
+	public ArrayList<ConditionChecker> getReturnTerms() {
+		return new ArrayList<ConditionChecker>(returnTerms);
+	}
 	
 	public Integer getId() {
 		return id;
@@ -43,5 +57,13 @@ public abstract class Rental {
 	}
 	public void setRentedVehicle(Vehicle rentedVehicle) {
 		this.rentedVehicle = rentedVehicle;
+	}
+
+	public Manager getManager() {
+		return manager;
+	}
+
+	public void setManager(Manager manager) {
+		this.manager = manager;
 	}
 }

@@ -82,9 +82,18 @@ public class RentalService {
 		
 		// after some time..
 		RentalByBooking rent1 = new RentalByBooking(booking);
+
+		PersonInfo pf = new PersonInfo();
+		pf.setFirstName("Mr. Shalinsky");
+		Manager m = new Manager();
+		m.setMaganerInfo(pf);
+		
+		rent1.setManager(m);
+		rent1.addReturnTerm(new ConditionCheckerOdometer(100));
 		
 		
 		// another use-case branch
+		/*
 		Customer c = new Customer();
 		
 		ArrayList<Preference> buyitnow_prefs = new ArrayList<Preference>();
@@ -93,6 +102,16 @@ public class RentalService {
 		Vehicle v3 = br.getAvailableVehicle(buyitnow_prefs, depart, true);
 		// if there's no v3, use weak preferences.. etc
 		RentalBuyItNow rent2 = new RentalBuyItNow(c,v3,new Date(2014,11,06));
+		*/
+		
+		// operation during rental
+		
+		//...
+		
+		
+		// return of a car
+		Manager manager = rent1.getManager();
+		manager.inspectRentedVehicle(rent1);
 		
 		
 		
