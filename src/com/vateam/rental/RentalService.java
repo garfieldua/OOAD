@@ -122,7 +122,7 @@ public class RentalService {
 		
 		c.setSeatNumber(5);
 		Preference psn = new PreferenceSeatNumber(c, 5);
-		System.out.println(pac.check());
+		System.out.println(psn.check());
 		
 		/*
 		// Creating car

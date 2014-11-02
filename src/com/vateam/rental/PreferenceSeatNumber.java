@@ -3,17 +3,17 @@ package com.vateam.rental;
 
 public class PreferenceSeatNumber extends Preference {
 
-	private Car car;
+	private Vehicle vehicle;
 	private int seatNumber;
 	
-	public PreferenceSeatNumber(Car car, int seatNumber) {
-		this.car = car;
+	public PreferenceSeatNumber(Vehicle vehicle, int seatNumber) {
+		this.vehicle = vehicle;
 		this.seatNumber = seatNumber;
 	}
 	
 	@Override
 	boolean check() {	
-		return car.getSeatNumber() == seatNumber;
+		return vehicle.getSeatNumber() == seatNumber;
 	}
 	
 }
