@@ -52,13 +52,13 @@ public class RentalService {
 		booking.setPickUpLocation(depart);
 		booking.setDropOffLocation(depart);
 		
-		booking.addPreference(new PreferenceSeatNumber(5));
-		booking.addPreference(new PreferenceAirConditioner());
+		//booking.addPreference(new PreferenceSeatNumber(5));
+		//booking.addPreference(new PreferenceAirConditioner());
 		
 		//ok...
 		// after some time (depends on wanted vehicle type) 
 		//server side:
-		
+		/*
 		Vehicle v = br.getAvailableVehicle(booking.getPreferences(), depart, false);
 		if (v != null) {
 			System.out.println("Vehicle is available");
@@ -79,6 +79,7 @@ public class RentalService {
 			}
 			
 		}
+		*/
 		
 		// after some time..
 		RentalByBooking rent1 = new RentalByBooking(booking);
@@ -89,7 +90,7 @@ public class RentalService {
 		m.setMaganerInfo(pf);
 		
 		rent1.setManager(m);
-		rent1.addReturnTerm(new ConditionCheckerOdometer(100));
+		//rent1.addReturnTerm(new ConditionCheckerOdometer(100));
 		
 		
 		// another use-case branch
@@ -114,8 +115,14 @@ public class RentalService {
 		manager.inspectRentedVehicle(rent1);
 		
 		
+		Car c = new Car();
+		c.setHasAirConditioner(true);
+		Preference pac = new PreferenceAirConditioner(c, true);
+		System.out.println(pac.check());
 		
-		//System.out.println(pref);
+		c.setSeatNumber(5);
+		Preference psn = new PreferenceSeatNumber(c, 5);
+		System.out.println(pac.check());
 		
 		/*
 		// Creating car

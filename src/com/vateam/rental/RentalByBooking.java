@@ -1,6 +1,6 @@
 package com.vateam.rental;
 
-public class RentalByBooking extends Rental {
+public class RentalByBooking extends RentalVehicle {
 
 	//create rental by booking
 	public RentalByBooking(Booking b) {

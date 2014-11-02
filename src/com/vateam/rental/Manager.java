@@ -15,13 +15,6 @@ public class Manager {
 	}
 
 	public void inspectRentedVehicle(Rental r) {
-		ArrayList<ConditionChecker> terms = r.getReturnTerms();
-		
-		for (ConditionChecker term: terms) {
-			term.checkVehicleByCond(r.getRentedVehicle());
-		}
-		
-		// do something after checking
 	}
 }
 

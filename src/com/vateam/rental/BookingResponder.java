@@ -22,8 +22,14 @@ public class BookingResponder {
 	
 	
 	// check if there's a vehicle for given location and preferences
-	public Vehicle getAvailableVehicle(ArrayList<Preference> prefs, Department pickUpLocation, boolean isWeakCheck ) {
+	
+	//ArrayList<Preference> prefs
+	public Vehicle getAvailableVehicle(ArrayList<Object> prefs, Department pickUpLocation, boolean isWeakCheck ) {
 		// here we need to get all vehicle :)
+		
+		return null;
+		
+		/*
 		ArrayList<Vehicle> v_all = GlobalManager.getInstance().getAllVehicles();
 		
 		// filter by given department
@@ -82,7 +88,9 @@ public class BookingResponder {
 		{
 			return null;
 		}
+		*/
 	}
+	
 	
 	//return all cars of the firm
 	public ArrayList<Vehicle> getAllVehicles() {

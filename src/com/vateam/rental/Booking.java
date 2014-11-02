@@ -12,17 +12,17 @@ public class Booking {
 	private Customer bookingCustomer;
 	private Department pickUpLocation;
 	private Department dropOffLocation;
-	private ArrayList<Preference> prefs = new ArrayList<Preference>();
+	//private ArrayList<Preference> prefs = new ArrayList<Preference>();
 	private Vehicle bookedVehicle;
 	
-	
+	/*
 	public void addPreference(Preference pref) {
 		prefs.add(pref);
 	}
 	
 	public ArrayList<Preference> getPreferences() {
 		return new ArrayList<Preference>(prefs);
-	}
+	}*/
 	
 	
 	//agregation

@@ -7,20 +7,8 @@ public abstract class Rental {
 	private String status;
 	private DateRange rentalRange;
 	private Customer customer;
-	private Department pickUpLocation;
-	private Vehicle rentedVehicle;
 	private Manager manager;
 	
-	// terms of vehicle return
-	private ArrayList<ConditionChecker> returnTerms = new ArrayList<ConditionChecker>();
-	
-	public void addReturnTerm(ConditionChecker pref) {
-		returnTerms.add(pref);
-	}
-	
-	public ArrayList<ConditionChecker> getReturnTerms() {
-		return new ArrayList<ConditionChecker>(returnTerms);
-	}
 	
 	public Integer getId() {
 		return id;
@@ -46,19 +34,6 @@ public abstract class Rental {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	public Department getPickUpLocation() {
-		return pickUpLocation;
-	}
-	public void setPickUpLocation(Department pickUpLocation) {
-		this.pickUpLocation = pickUpLocation;
-	}
-	public Vehicle getRentedVehicle() {
-		return rentedVehicle;
-	}
-	public void setRentedVehicle(Vehicle rentedVehicle) {
-		this.rentedVehicle = rentedVehicle;
-	}
-
 	public Manager getManager() {
 		return manager;
 	}

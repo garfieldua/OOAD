@@ -1,21 +1,19 @@
 package com.vateam.rental;
 
-public class PreferenceSeatNumber implements Preference, WeakPreference {
 
+public class PreferenceSeatNumber extends Preference {
+
+	private Car car;
 	private int seatNumber;
 	
-	public PreferenceSeatNumber(int seatNumber) {
+	public PreferenceSeatNumber(Car car, int seatNumber) {
+		this.car = car;
 		this.seatNumber = seatNumber;
 	}
-
+	
 	@Override
-	public boolean checkVehicleByPref(Vehicle v) {
-		return (v.getSeatNumber() == this.seatNumber);
-	}
-
-	@Override
-	public boolean checkVehicleByWeakPref(Vehicle v) {
-		return (Math.abs(v.getSeatNumber() - this.seatNumber) <= 1);
+	boolean check() {	
+		return car.getSeatNumber() == seatNumber;
 	}
 	
 }
