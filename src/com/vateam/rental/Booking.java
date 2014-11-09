@@ -12,24 +12,16 @@ public class Booking {
 	private Customer bookingCustomer;
 	private Department pickUpLocation;
 	private Department dropOffLocation;
-	//private ArrayList<Preference> prefs = new ArrayList<Preference>();
 	private Vehicle bookedVehicle;
+	private ArrayList<PreferenceVehicle> prefs = new ArrayList<PreferenceVehicle>();
 	
-	/*
-	public void addPreference(Preference pref) {
+	public void addPref(PreferenceVehicle pref) {
 		prefs.add(pref);
 	}
 	
-	public ArrayList<Preference> getPreferences() {
-		return new ArrayList<Preference>(prefs);
-	}*/
-	
-	
-	//agregation
-	private Driver driver = null;
-	
-	// department -> where we get vehicle
-	// department -> where get return vehicle
+	public ArrayList<PreferenceVehicle>  getPrefs() {
+		return new ArrayList<PreferenceVehicle> (prefs);
+	}
 	
 	public Integer getId() {
 		return id;
@@ -69,14 +61,6 @@ public class Booking {
 
 	public void setBookingCustomer(Customer bookingCustomer) {
 		this.bookingCustomer = bookingCustomer;
-	}
-
-	public Driver getDriver() {
-		return driver;
-	}
-
-	public void setDriver(Driver driver) {
-		this.driver = driver;
 	}
 
 	public Department getPickUpLocation() {

@@ -1,7 +1,5 @@
 package com.vateam.rental;
 
-import java.util.ArrayList;
-
 public abstract class Rental {
 	private Integer id;
 	private String status;

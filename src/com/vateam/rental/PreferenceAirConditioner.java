@@ -1,28 +1,31 @@
 package com.vateam.rental;
 
 
-public class PreferenceAirConditioner extends Preference {
+public class PreferenceAirConditioner extends PreferenceVehicle {
 
-	private Car car;
 	private boolean wantAirConditioner;
 	
-	public PreferenceAirConditioner(Car car, boolean wantAirConditioner) {
-		this.car = car;
+	public PreferenceAirConditioner(boolean wantAirConditioner) {
 		this.wantAirConditioner = wantAirConditioner;
 	}
 	
-	public PreferenceAirConditioner(Car car) {
-		this.car = car;
+	public PreferenceAirConditioner() {
 		this.wantAirConditioner = true;
 	}
 	
 	@Override
 	boolean check() {
-		boolean result = car.hasAirConditioner();
+		boolean result = false;
 		
-		if (!wantAirConditioner) {
-			result = !result;
+		if (v instanceof Car) {
+			Car car = (Car) v;
+			
+			result = car.hasAirConditioner();
+			if (!wantAirConditioner) {
+				result = !result;
+			}
 		}
+
 		return result;
 	}
 	

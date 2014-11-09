@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class RentalBuyItNow extends RentalVehicle {
 
-	public RentalBuyItNow(Customer c, Vehicle v, Date returnDate ) {
+	public RentalBuyItNow(Customer c, Date returnDate ) {
 		
 	}
 	

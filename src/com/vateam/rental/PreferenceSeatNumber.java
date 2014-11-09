@@ -1,19 +1,23 @@
 package com.vateam.rental;
 
 
-public class PreferenceSeatNumber extends Preference {
+public class PreferenceSeatNumber extends PreferenceVehicle {
 
-	private Vehicle vehicle;
 	private int seatNumber;
 	
-	public PreferenceSeatNumber(Vehicle vehicle, int seatNumber) {
-		this.vehicle = vehicle;
+	public PreferenceSeatNumber(int seatNumber) {
 		this.seatNumber = seatNumber;
 	}
 	
 	@Override
 	boolean check() {	
-		return vehicle.getSeatNumber() == seatNumber;
+		boolean result = false;
+		
+		if (v instanceof Car) {
+			Car car = (Car) v;
+			result = car.getSeatNumber() == seatNumber;
+		}
+
+		return result;
 	}
-	
 }

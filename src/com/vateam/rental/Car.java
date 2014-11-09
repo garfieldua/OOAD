@@ -1,7 +1,6 @@
 package com.vateam.rental;
 
 public class Car extends Vehicle {
-	// that is concrete car!
 	private String licensePlate;
 	private boolean hasAirConditioner;
 	
