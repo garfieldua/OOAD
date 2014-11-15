@@ -6,19 +6,18 @@ import java.util.Date;
 public class Main {
 
 	public static void main(String[] args) {
-		
 		// here we create 'booking' based on given info
-		BookingController bs = new BookingController();
+		BookingController bs = BookingController.getInstance();
 		
-		int pickupDepartmentId = 3;
+		int pickupDepartmentId = 15;
 		int dropOffDepartmentId = 4;
 		Date startDate = new Date(2014,11,06);
 		Date endDate = new Date(2014,11,06);
 		
-		PreferenceVehicle pac = new PreferenceAirConditioner();
-		PreferenceVehicle psn = new PreferenceSeatNumber(5);
+		Preference pac = new PreferenceAirConditioner();
+		Preference psn = new PreferenceSeatNumber(4);
 
-		ArrayList<PreferenceVehicle> prefs = new ArrayList<PreferenceVehicle>();
+		ArrayList<Preference> prefs = new ArrayList<Preference>();
 		prefs.add(pac);
 		prefs.add(psn);
 		
@@ -27,11 +26,11 @@ public class Main {
 		Customer c = new Customer();
 		c.setCustomerInfo(pi);
 		
-		bs.createBooking(c,pickupDepartmentId, dropOffDepartmentId, startDate, endDate, prefs);
+		Booking booking = bs.createBooking(c,pickupDepartmentId, dropOffDepartmentId, startDate, endDate, prefs);
 		
 		//after some time
 		//we need to get a vehicle for given booking
-		boolean vehicle_found = bs.isVehicleAvailable();
+		boolean vehicle_found = booking.isVehicleAvailable(new VehiclePickerStrict());
 		if (vehicle_found) {
 			System.out.println("Vehicle is available");
 		} 
@@ -40,18 +39,18 @@ public class Main {
 		}
 		
 		//after some time
+		RentalController rc = RentalController.getInstance();
+		
 		//creating rental by booking
-		RentalController rc = new RentalController();
-		rc.createRentalByBooking(bs.getBooking());
+		Rental rental1 = rc.createRentalByBooking(booking);
 		
 		//another use-case: creating rental 'buy-it-now'
-		RentalController rc2 = new RentalController();
-		rc2.createRentalBuyItNow(c, endDate);
+		Rental rental2 = rc.createRentalBuyItNow(c, endDate);
 		
 		//after some time
 		//return of a car
-		rc.doReturn();
-		rc2.doReturn();
+		rc.doReturn(rental1);
+		rc.doReturn(rental2);
 	}
 
 }

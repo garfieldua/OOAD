@@ -13,6 +13,7 @@ public class Manager {
 	}
 
 	public void inspectRentedVehicle(Rental r) {
+		// simulation
 	}
 }
 

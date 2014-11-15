@@ -4,11 +4,23 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class BookingController {
+	// singleton
+	private static BookingController _obj;
 	
-	private Booking booking = null;
+	private BookingController() {
+		
+	}
 	
-	public void createBooking(Customer c, int pickupDepartmentId, int dropOffDepartmentId, Date startDate, Date endDate, ArrayList<PreferenceVehicle> prefs) {
-		booking = new Booking();
+	public static BookingController getInstance() {
+        if (_obj == null) {
+        	_obj = new BookingController();
+        }
+        
+        return _obj;
+    }
+	
+	public Booking createBooking(Customer c, int pickupDepartmentId, int dropOffDepartmentId, Date startDate, Date endDate, ArrayList<Preference> prefs) {
+		Booking booking = new Booking();
 		
 		// some id to generate
 		int id = 0;
@@ -34,52 +46,13 @@ public class BookingController {
 		booking.setDropOffLocation(dropOffLoc);
 		
 		//prefs
-		for (PreferenceVehicle pref: prefs) {
+		for (Preference pref: prefs) {
 			booking.addPref(pref);
 		}
 		
 		// customer
 		booking.setBookingCustomer(c);
-	}
-	
-	public boolean isVehicleAvailable() {
-		GlobalManager gm = GlobalManager.getInstance();
-		
-		ArrayList<Vehicle> vehicles = gm.getAllVehicles();
-		ArrayList<PreferenceVehicle> prefs = booking.getPrefs();
-		ArrayList<Vehicle> available_vehicles = new ArrayList<Vehicle>();
-		
-		for (Vehicle v: vehicles) {
-			if (v.getCurDepartament().equals(booking.getPickUpLocation())) {
-				boolean ok = true;
-				for (PreferenceVehicle pref: prefs) {
-					pref.setVehicleToCheck(v);
-					if (!pref.check()) {
-						ok = false;
-					}
-				}
-				
-				if (ok) {
-					available_vehicles.add(v);
-				}
-			}
-		}
-		
-		if (available_vehicles.size() != 0) {
-			booking.setBookedVehicle(available_vehicles.get(0));
-			return true;
-		}
-		else {
-			// do weak check here
-			// some magic logic here needed
-		}
-		
-		return true;
-	}
-	
-
-	public Booking getBooking() {
 		return booking;
 	}
-
+	
 }

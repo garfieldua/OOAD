@@ -2,5 +2,5 @@ package com.vateam.rental;
 
 
 public abstract class Preference {
-	abstract boolean check();
+	abstract boolean check(Object o);
 }

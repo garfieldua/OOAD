@@ -3,24 +3,35 @@ package com.vateam.rental;
 import java.util.Date;
 
 public class RentalController {
-	private Rental rental = null;
-	
-	public void createRentalByBooking(Booking booking) {
-		rental = new RentalByBooking(booking);
-		rental.setManager(getAvailableManager());
-	}
-	
-	public void createRentalBuyItNow(Customer c, Date returnDate) {
-		rental = new RentalBuyItNow(c, returnDate);
-		rental.setManager(getAvailableManager());
-	}
 
-	public Rental getRental() {
+	// singleton
+	private static RentalController _obj;
+	
+	private RentalController() {
+	}
+	
+	public static RentalController getInstance() {
+        if (_obj == null) {
+        	_obj = new RentalController();
+        }
+        
+        return _obj;
+    }
+		
+	public Rental createRentalByBooking(Booking booking) {
+		Rental rental = new RentalByBooking(booking);
+		rental.setManager(getAvailableManager(rental));
 		return rental;
 	}
 	
-	private Manager getAvailableManager() {
-		// temp 
+	public Rental createRentalBuyItNow(Customer c, Date returnDate) {
+		Rental rental = new RentalBuyItNow(c, returnDate);
+		rental.setManager(getAvailableManager(rental));
+		return rental;
+	}
+	
+	private Manager getAvailableManager(Rental rental) {
+		// simulation
 		PersonInfo pf = new PersonInfo();
 		pf.setFirstName("Mr. Shalinsky");
 		Manager m = new Manager();
@@ -29,7 +40,7 @@ public class RentalController {
 		return m;
 	}
 	
-	public void doReturn() {
+	public void doReturn(Rental rental) {
 		Manager manager = rental.getManager();
 		manager.inspectRentedVehicle(rental);
 	}

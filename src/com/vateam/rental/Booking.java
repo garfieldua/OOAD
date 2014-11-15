@@ -13,14 +13,14 @@ public class Booking {
 	private Department pickUpLocation;
 	private Department dropOffLocation;
 	private Vehicle bookedVehicle;
-	private ArrayList<PreferenceVehicle> prefs = new ArrayList<PreferenceVehicle>();
+	private ArrayList<Preference> prefs = new ArrayList<Preference>();
 	
-	public void addPref(PreferenceVehicle pref) {
+	public void addPref(Preference pref) {
 		prefs.add(pref);
 	}
 	
-	public ArrayList<PreferenceVehicle>  getPrefs() {
-		return new ArrayList<PreferenceVehicle> (prefs);
+	public ArrayList<Preference>  getPrefs() {
+		return new ArrayList<Preference> (prefs);
 	}
 	
 	public Integer getId() {
@@ -87,4 +87,12 @@ public class Booking {
 		this.dropOffLocation = dropOffLocation;
 	}
 
+	public boolean isVehicleAvailable(VehiclePicker vp) {
+		
+		// strategy
+		Vehicle v = vp.getAvailableVehicle(this);
+		this.setBookedVehicle(v);
+		
+		return (v!=null);
+	}
 }
