@@ -7,7 +7,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// here we create 'booking' based on given info
-		BookingController bs = BookingController.getInstance();
+		BookingController bs = new BookingController();
 		
 		int pickupDepartmentId = 15;
 		int dropOffDepartmentId = 4;
@@ -39,7 +39,7 @@ public class Main {
 		}
 		
 		//after some time
-		RentalController rc = RentalController.getInstance();
+		RentalController rc = new RentalController();
 		
 		//creating rental by booking
 		Rental rental1 = rc.createRentalByBooking(booking);

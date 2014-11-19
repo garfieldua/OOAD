@@ -11,7 +11,7 @@ public class GlobalManager {
 	private static GlobalManager _obj;
 	
 	private GlobalManager() {
-		vm = VehicleManager.getInstance();
+		vm = new VehicleManager();
     }
 	 
     public static GlobalManager getInstance() {

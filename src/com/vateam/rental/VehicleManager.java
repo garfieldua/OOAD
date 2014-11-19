@@ -7,10 +7,7 @@ public class VehicleManager {
 	
 	private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
-	// singleton
-	private static VehicleManager _obj;
-	
-	private VehicleManager() {
+	public VehicleManager() {
 		
 		Department d = new Department();
 		d.setId(15);
@@ -56,13 +53,6 @@ public class VehicleManager {
 		vehicles.add(moto);
     }
 	 
-    public static VehicleManager getInstance() {
-        if (_obj == null) {
-        	_obj = new VehicleManager();
-        }
-        
-        return _obj;
-    }
     
     public ArrayList<Vehicle> getAllVehicles() {
 		return new ArrayList<Vehicle>(vehicles);

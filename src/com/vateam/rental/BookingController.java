@@ -4,21 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class BookingController {
-	// singleton
-	private static BookingController _obj;
-	
-	private BookingController() {
-		
-	}
-	
-	public static BookingController getInstance() {
-        if (_obj == null) {
-        	_obj = new BookingController();
-        }
-        
-        return _obj;
-    }
-	
+
 	public Booking createBooking(Customer c, int pickupDepartmentId, int dropOffDepartmentId, Date startDate, Date endDate, ArrayList<Preference> prefs) {
 		Booking booking = new Booking();
 		

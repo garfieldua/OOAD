@@ -3,20 +3,6 @@ package com.vateam.rental;
 import java.util.Date;
 
 public class RentalController {
-
-	// singleton
-	private static RentalController _obj;
-	
-	private RentalController() {
-	}
-	
-	public static RentalController getInstance() {
-        if (_obj == null) {
-        	_obj = new RentalController();
-        }
-        
-        return _obj;
-    }
 		
 	public Rental createRentalByBooking(Booking booking) {
 		Rental rental = new RentalByBooking(booking);
